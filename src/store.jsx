@@ -59,12 +59,18 @@ export const StoreProvider = ({ children }) => {
     setUser(null);
   };
 
-  const addWorker = (worker) => {
-    setData(prev => ({
-      ...prev,
-      workers: [...prev.workers, { ...worker, id: Date.now() }]
-    }));
-  };
+ const addWorker = async (worker) => {
+  try {
+    await addDoc(
+      collection(db, "workers"),
+      worker
+    );
+
+    alert("Worker Saved");
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const updateWorker = (updatedWorker) => {
     setData(prev => ({
