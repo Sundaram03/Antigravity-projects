@@ -1,5 +1,10 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-
+import { db } from "./firebase";
+import {
+  collection,
+  addDoc,
+  getDocs
+} from "firebase/firestore";
 const STORAGE_KEY = 'wage_ledger_data';
 const AUTH_KEY = 'wage_ledger_user';
 
